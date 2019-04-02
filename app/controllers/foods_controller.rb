@@ -4,7 +4,7 @@ class FoodsController < ApplicationController
   end
   
   def show
-    @food = Food.find_by(id: params[:id])
+    @food = Food.find(params[:id])
   end
   
   def new
@@ -19,5 +19,26 @@ class FoodsController < ApplicationController
     else
       render("foods/new")
     end
+  end
+  
+  def edit
+    @food = Food.find(params[:id])
+  end
+  
+  def update
+    @food = Food.find(params[:id])
+    @food.name = params[:name]
+    @food.shop_name = params[:shop_name]
+    @food.description = params[:description]
+    if @food.save
+      redirect_to("/foods")
+    end
+  end
+  
+  def destroy
+    @food = Food.find(params[:id])
+    @food.destroy
+    flash[:notice] = "投稿を削除しました"
+    redirect_to("/foods")
   end
 end

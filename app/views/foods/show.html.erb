@@ -2,3 +2,5 @@
 <div><%= @food.description %></div>
 <div><%= @food.shop_name %></div>
 
+<%= link_to "編集", "/foods/#{@food.id}/edit" %>
+<%= link_to "削除", "/foods/#{@food.id}", method: :delete %>
