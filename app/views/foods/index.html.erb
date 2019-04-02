@@ -1,0 +1,9 @@
+<% @foods.each do |food| %>
+<div class="card">
+  <div class="card-body">
+    <h1><%= food.name %></h1>
+    <%= food.description %>
+    <p class="text-muted"></p><%= food.shop_name %></p>
+  </div>
+</div>
+<% end %>
