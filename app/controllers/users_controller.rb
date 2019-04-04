@@ -35,6 +35,8 @@ class UsersController < ApplicationController
       flash[:notice] = "ログインしました"
       redirect_to("/foods")
     else
+      @email = params[:email]
+      @password = params[:password]
       @error_message = "ユーザーが存在しません。もう一度入力をご確認ください"
       render("users/login_form")
     end
