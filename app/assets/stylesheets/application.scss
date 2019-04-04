@@ -1,1 +1,21 @@
 @import "bootstrap";
+
+body {
+  padding-top: 56px;;
+}
+
+.jumbotron {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 56px);
+  background-image: url('/assets/jumbotron.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  
+  .catchcopy {
+    font-size: 3rem;
+    color: #fff;
+    text-shadow:0 0 3px #000;
+  }
+}
