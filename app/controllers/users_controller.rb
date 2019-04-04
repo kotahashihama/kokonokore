@@ -21,4 +21,28 @@ class UsersController < ApplicationController
       render("users/new")
     end
   end
+  
+  def login_form
+  end
+  
+  def login
+    @user = User.find_by(
+      email: params[:email],
+      password: params[:password]
+      )
+    if @user
+      session[:user_id] = @user.id
+      flash[:notice] = "ログインしました"
+      redirect_to("/foods")
+    else
+      @error_message = "ユーザーが存在しません。もう一度入力をご確認ください"
+      render("users/login_form")
+    end
+  end
+  
+  def logout
+    session[:user_id] = nil
+    redirect_to(root_path)
+  end
+  
 end
