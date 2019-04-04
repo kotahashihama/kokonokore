@@ -14,7 +14,7 @@ class FoodsController < ApplicationController
   def create
     @food = Food.new(name: params[:name], shop_name: params[:shop_name], description: params[:description])
     if @food.save
-      flash[:notice] = "投稿しました！"
+      flash[:notice] = "グルメを投稿しました！"
       redirect_to("/foods")
     else
       render("foods/new")
@@ -31,14 +31,17 @@ class FoodsController < ApplicationController
     @food.shop_name = params[:shop_name]
     @food.description = params[:description]
     if @food.save
+      flash[:notice] = "グルメを更新しました。"
       redirect_to("/foods")
+    else
+      render("foods/edit")
     end
   end
   
   def destroy
     @food = Food.find(params[:id])
     @food.destroy
-    flash[:notice] = "投稿を削除しました"
+    flash[:notice] = "グルメを削除しました。"
     redirect_to("/foods")
   end
 end

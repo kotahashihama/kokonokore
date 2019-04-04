@@ -1,16 +1,23 @@
-<div class="card-columns">
-  <% @foods.each do |food| %>
-  <!--<div class="col-4">-->
-    <div class="card">
-      <div class="card-body">
-        <h1><%= link_to food.name, "/foods/#{food.id}" %></h1>
-        <%= food.description %>
-        <p class="text-muted"></p><%= food.shop_name %></p>
+<div class="row">
+<div class="col-8">
+  <div class="card-columns">
+    <% @foods.each do |food| %>
+    <!--<div class="col-4">-->
+      <div class="card">
+        <div class="card-body">
+          <h1><%= link_to food.name, "/foods/#{food.id}" %></h1>
+          <%= food.description %>
+          <p class="text-muted"></p><%= food.shop_name %></p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted"><%= time_ago_in_words(food.created_at) + " ago" %></small>
+        </div>
       </div>
-      <div class="card-footer">
-        <small class="text-muted"><%= time_ago_in_words(food.created_at) + " ago" %></small>
-      </div>
-    </div>
-  <!--</div>-->
-  <% end %>
+    <!--</div>-->
+    <% end %>
+  </div>
+</div>
+<div class="col-4">
+  名前
+</div>
 </div>
