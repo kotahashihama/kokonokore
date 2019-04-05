@@ -25,7 +25,23 @@
           <% end %>
         </div>
       </div>
-      <div class="tab-pane fade" id="likes" role="tabpanel" aria-labelledby="likes-tab">あ</div>
+      <div class="tab-pane fade" id="likes" role="tabpanel" aria-labelledby="likes-tab">
+        <div class="card-columns">
+          <% @likes.each do |like| %>
+          <% food = Food.find_by(id: like.food_id) %>
+            <div class="card">
+              <div class="card-body">
+                <h1><%= link_to food.name, "/foods/#{food.id}" %></h1>
+                <%= food.description %>
+                <p class="text-muted"></p><%= food.shop_name %></p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted"><%= time_ago_in_words(food.created_at) + " ago" %></small>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
   <div class="col-4 bg-light">

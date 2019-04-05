@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @foods = Food.all
+    @likes = Like.where(user_id: params[:id])
   end
   
   def new

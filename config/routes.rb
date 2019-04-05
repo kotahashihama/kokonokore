@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   get 'foods/:id/edit' => 'foods#edit'
   post 'foods/:id/update' => 'foods#update'
   delete 'foods/:id' => 'foods#destroy'
+  
+  post 'likes/:food_id/create' => 'likes#create'
+  post 'likes/:food_id/destroy' => 'likes#destroy'
 
   root 'home#top'
 
