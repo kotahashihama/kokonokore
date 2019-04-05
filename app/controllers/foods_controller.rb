@@ -30,6 +30,13 @@ class FoodsController < ApplicationController
     @food.name = params[:name]
     @food.shop_name = params[:shop_name]
     @food.description = params[:description]
+    
+    if params[:image]
+      @food.image_url = "#{@food.id}.jpg"
+      image = params[:image]
+      File.binwrite("public/food_images/#{@food.image_url}", image.read)
+    end
+    
     if @food.save
       flash[:notice] = "グルメを更新しました。"
       redirect_to("/foods")
