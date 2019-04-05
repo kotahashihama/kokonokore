@@ -1,0 +1,40 @@
+<% if @user.errors.full_messages %>
+<div>
+  <ul class="text-danger">
+    <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="row">
+  <div class="col-6 mx-auto">
+    <%= form_tag("/users/#{@user.id}/update", multipart: true) do %>
+      <div class="user_image">
+        <%= image_tag "/user_images/#{@user.image_url}", alt: @user.name %>
+      </div>
+      <div class="form-group">
+        <label for="image">プロフィール画像</label>
+        <input class="form-control-file" id="image" name="image" type="file">
+      </div>
+      <div class="form-group">
+        <label for="name">名前</label>
+        <input class="form-control" id="name" name="name" value="<%= @user.name %>">
+      </div>
+      <div class="form-group">
+        <label for="email">メールアドレス</label>
+        <input class="form-control" id="email" name="email" value="<%= @user.email %>">
+      </div>
+      <div class="form-group">
+        <label for="description">自己紹介</label>
+        <textarea class="form-control" id="description" name="description"><%= @user.description %></textarea>
+      </div>
+      <div class="form-group">
+        <label for="password">パスワード</label>
+        <input class="form-control" id="password" name="password" type="password" value="<%= @user.password %>">
+      </div>
+      <button class="btn btn-primary" type="submit">更新</button>
+    <% end %>
+  </div>
+</div>

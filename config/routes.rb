@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   post 'login' => 'users#login'
   post 'logout' => 'users#logout'
   get 'users/:id' => 'users#show'
+  get 'users/:id/edit' => 'users#edit'
+  post 'users/:id/update' => 'users#update'
 
   get 'foods' => 'foods#index'
   get 'foods/new' => 'foods#new'

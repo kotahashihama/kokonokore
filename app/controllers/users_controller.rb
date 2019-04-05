@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @foods = Food.all
   end
   
   def new
@@ -23,6 +24,31 @@ class UsersController < ApplicationController
       redirect_to("/foods")
     else
       render("users/new")
+    end
+  end
+  
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    @user.name = params[:name]
+    @user.email = params[:email]
+    @user.description = params[:description]
+    @user.password = params[:password]
+    
+    if params[:image]
+      @user.image_url = "#{@user.id}.jpg"
+      image = params[:image]
+      File.binwrite("public/user_images/#{@user.image_url}", image.read)
+    end
+    
+    if @user.save
+      flash[:notice] = "ユーザー情報を更新しました"
+      redirect_to("/users/#{@user.id}")
+    else
+      render("users/edit")
     end
   end
   

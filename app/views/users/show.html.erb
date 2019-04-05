@@ -2,23 +2,38 @@
   <div class="col-8">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">タイムライン</a>
+        <a class="nav-link active" id="timeline-tab" data-toggle="tab" href="#timeline" role="tab" aria-controls="timeline" aria-selected="true">タイムライン</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+        <a class="nav-link" id="likes-tab" data-toggle="tab" href="#likes" role="tab" aria-controls="likes" aria-selected="false">いいね</a>
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...あ</div>
-      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...ｓ</div>
-      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...ｂ</div>
+      <div class="tab-pane fade show active" id="timeline" role="tabpanel" aria-labelledby="timeline-tab">
+        <div class="card-columns">
+          <% @foods.each do |food| %>
+            <div class="card">
+              <div class="card-body">
+                <h1><%= link_to food.name, "/foods/#{food.id}" %></h1>
+                <%= food.description %>
+                <p class="text-muted"></p><%= food.shop_name %></p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted"><%= time_ago_in_words(food.created_at) + " ago" %></small>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="likes" role="tabpanel" aria-labelledby="likes-tab">あ</div>
     </div>
   </div>
   <div class="col-4 bg-light">
-    <%= @user.name %>
-    <%= @user.email %>
+    <div class="user_image">
+      <%= image_tag "/user_images/#{@user.image_url}", alt: @user.name %>
+    </div>
+    <div><%= @user.name %></div>
+    <div><%= @user.description %></div>
+    <%= link_to "編集", "/users/#{@user.id}/edit" %>
   </div>
 </div>
