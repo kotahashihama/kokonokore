@@ -1,10 +1,14 @@
 class FoodsController < ApplicationController
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  before_action :authenticate_user, except: [:index, :show]
+  
   def index
     @foods = Food.all
   end
   
   def show
     @food = Food.find(params[:id])
+    @user = User.find_by(id: @food.user_id)
   end
   
   def new
@@ -12,9 +16,9 @@ class FoodsController < ApplicationController
   end
   
   def create
-    @food = Food.new(name: params[:name], shop_name: params[:shop_name], description: params[:description])
+    @food = Food.new(name: params[:name], shop_name: params[:shop_name], description: params[:description], user_id: @current_user.id)
     if @food.save
-      flash[:notice] = "グルメを投稿しました！"
+      flash[:success] = "グルメを投稿しました！"
       redirect_to("/foods")
     else
       render("foods/new")
@@ -38,7 +42,7 @@ class FoodsController < ApplicationController
     end
     
     if @food.save
-      flash[:notice] = "グルメを更新しました。"
+      flash[:success] = "グルメを更新しました。"
       redirect_to("/foods")
     else
       render("foods/edit")
@@ -48,7 +52,15 @@ class FoodsController < ApplicationController
   def destroy
     @food = Food.find(params[:id])
     @food.destroy
-    flash[:notice] = "グルメを削除しました。"
+    flash[:success] = "グルメを削除しました。"
     redirect_to("/foods")
+  end
+  
+  def ensure_correct_user
+    @food = Food.find(params[:id])
+    if @current_user && @food.user_id != @current_user.id
+      flash[:danger] = "権限がありません"
+      redirect_to("/foods")
+    end
   end
 end

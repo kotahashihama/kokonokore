@@ -64,9 +64,9 @@
     <% end %>
     
     <div class="container mt-5">
-      <% if flash[:notice] %>
-      <div class="alert alert-success" role="alert">
-        <%= flash[:notice] %>
+      <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>">
+        <%= value %>
       </div>
       <% end %>
     
