@@ -1,11 +1,20 @@
-<h1><%= @food.name %></h1>
-<div><%= @food.description %></div>
-<div><%= @food.shop_name %></div>
-<% if Like.find_by(user_id: @current_user.id, food_id: @food.id) %>
-<%= link_to "いいねを取り消す", "/likes/#{@food.id}/destroy", method: :post %>
-<% else %>
-<%= link_to "いいね", "/likes/#{@food.id}/create", method: :post %>
-<% end %>
-
-<%= link_to "編集", "/foods/#{@food.id}/edit" %>
-<%= link_to "削除", "/foods/#{@food.id}", method: :delete %>
+<div class="col-8 mx-auto">
+  <div class="card">
+    <%= image_tag "/food_images/#{@food.image_url}" %>
+    <div class="card-body">
+      <h1><%= @food.name %></h1>
+      <div><%= @food.description %></div>
+      <div><%= @food.shop_name %></div>
+      <% if @current_user %>
+        <% if Like.find_by(user_id: @current_user.id, food_id: @food.id) %>
+          <%= link_to "いいねを取り消す", "/likes/#{@food.id}/destroy", method: :post %>
+        <% else %>
+          <%= link_to "いいね", "/likes/#{@food.id}/create", method: :post %>
+        <% end %>
+      <% end %>
+      
+      <%= link_to "編集", "/foods/#{@food.id}/edit", class: "btn btn-outline-primary" %>
+      <%= link_to "削除", "/foods/#{@food.id}", class: "btn btn-outline-danger", method: :delete %>
+    </div>
+  </div>
+</div>
