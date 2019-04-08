@@ -17,6 +17,13 @@ class FoodsController < ApplicationController
   
   def create
     @food = Food.new(name: params[:name], shop_name: params[:shop_name], description: params[:description], user_id: @current_user.id)
+    
+    if params[:image]
+      @food.image_url = "#{@food.id}.jpg"
+      image = params[:image]
+      File.binwrite("public/food_images/#{@food.image_url}", image.read)
+    end
+    
     if @food.save
       flash[:success] = "グルメを投稿しました！"
       redirect_to("/foods")

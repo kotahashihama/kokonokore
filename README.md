@@ -1,24 +1,14 @@
-# README
+# 概要
+最初の自作アプリとして、飲食店のおすすめメニューをピンポイントで共有できるアプリを作りました。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# 機能一覧
+* 記事一覧表示機能
+* 記事詳細表示機能
+* 記事投稿機能
+* 管理ユーザー登録機能
+* 管理ユーザーログイン機能
+* 画像ファイルのアップロード機能
+* 「いいね」機能
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# 使用技術
+* Ruby on Rails
