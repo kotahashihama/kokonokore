@@ -5,7 +5,7 @@
       <h1><%= @food.name %></h1>
       <div><%= @food.description %></div>
       <div><%= @food.shop_name %></div>
-      <div>by <%= @user.name %></div>
+      <div>by <%= link_to @user.name, "/users/#{@user.id}" %></div>
       <% if @current_user %>
         <% if Like.find_by(user_id: @current_user.id, food_id: @food.id) %>
           <%= link_to "いいねを取り消す", "/likes/#{@food.id}/destroy", method: :post %>

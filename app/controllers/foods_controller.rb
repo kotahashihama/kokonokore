@@ -3,7 +3,7 @@ class FoodsController < ApplicationController
   before_action :authenticate_user, except: [:index, :show]
   
   def index
-    @foods = Food.all
+    @foods = Food.all.order(created_at: :desc)
   end
   
   def show

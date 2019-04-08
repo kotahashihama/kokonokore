@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @foods = Food.all
+    @foods = Food.all.order(created_at: :desc)
     @likes = Like.where(user_id: params[:id])
   end
   
