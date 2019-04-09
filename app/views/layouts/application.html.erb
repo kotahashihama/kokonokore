@@ -24,7 +24,7 @@
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#">ココノコレとは？</a>
+              <%= link_to "ココノコレとは", "/about", class: "nav-link" %>
             </li>
             <li class="nav-item">
               <%= link_to "グルメ一覧", "/foods", class: "nav-link" %>
@@ -71,6 +71,14 @@
     
       <%= yield %>
     <% unless action_name == "top" %></div><% end %>
+    
+    <% unless action_name == "top" %>
+    <footer class="text-center py-5">
+      <div class="container">
+        <small class="text-muted">&copy; Kokonokore built by <%= link_to "Kota Hashihama", "https://kotahashihama.com/", target: "_blank" %></small>
+      </div>
+    </footer>
+    <% end %>
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
