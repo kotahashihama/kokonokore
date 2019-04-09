@@ -2,6 +2,10 @@
 飲食店のおすすめグルメを共有できるWebサービスです。  
 デモ: https://kokonokore.herokuapp.com/
 
+【デバッグ用アカウント】  
+メールアドレス: test@example.com  
+パスワード: testtest
+
 # 機能一覧
 - 記事
   - 一覧表示
