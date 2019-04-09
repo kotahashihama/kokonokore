@@ -5,9 +5,9 @@
         <%= image_tag "/food_images/#{food.image_url}", class: "card-img-top" %>
         <div class="card-body">
           <div><%= link_to food.name, "/foods/#{food.id}" %></div>
-          <%= food.description %>
-          <p class="text-muted"><%= food.shop_name %></p>
-          <small class="text-muted"><%= time_ago_in_words(food.created_at) + " ago" %></small>
+          <p><%= food.description %></p>
+          <div class="text-muted"><%= food.shop_name %></div>
+          <small class="text-muted"><%= time_ago_in_words(food.created_at) + "前" %></small>
         </div>
       </div>
     <% end %>

@@ -2,22 +2,30 @@
   <div class="card">
     <%= image_tag "/food_images/#{@food.image_url}" %>
     <div class="card-body">
-      <h1><%= @food.name %></h1>
-      <div><%= @food.description %></div>
-      <div><%= @food.shop_name %></div>
-      <div>by <%= link_to @user.name, "/users/#{@user.id}" %></div>
-      <% if @current_user %>
-        <% if Like.find_by(user_id: @current_user.id, food_id: @food.id) %>
-          <%= link_to "いいねを取り消す", "/likes/#{@food.id}/destroy", method: :post %>
-        <% else %>
-          <%= link_to "いいね", "/likes/#{@food.id}/create", method: :post %>
-        <% end %>
+      <div><b><%= @food.name %></b></div>
+      <p><%= @food.description %></p>
+      <div class="text-muted"><%= @food.shop_name %></div>
       
-        <% if @food.user_id == @current_user.id %>
-          <%= link_to "編集", "/foods/#{@food.id}/edit", class: "btn btn-outline-primary" %>
-          <%= link_to "削除", "/foods/#{@food.id}", class: "btn btn-outline-danger", method: :delete %>
+      <small class="text-muted"><%= time_ago_in_words(@food.created_at) + "前" %> by <%= link_to @user.name, "/users/#{@user.id}" %></small>
+      
+      <div class="text-right">
+        <% if @current_user %>
+          <% if Like.find_by(user_id: @current_user.id, food_id: @food.id) %>
+            <%= link_to "/likes/#{@food.id}/destroy", class: "btn btn-outline-primary", method: :post do %>
+            <i class="fas fa-thumbs-up"></i> いいね <%= Like.where(food_id: @food.id).count %>
+            <% end %>
+          <% else %>
+            <%= link_to "/likes/#{@food.id}/create", class: "btn btn-outline-primary", method: :post do %>
+            <i class="far fa-thumbs-up"></i> いいね <%= Like.where(food_id: @food.id).count %>
+            <% end %>
+          <% end %>
+        
+          <% if @food.user_id == @current_user.id %>
+            <%= link_to "編集", "/foods/#{@food.id}/edit", class: "btn btn-outline-secondary" %>
+            <%= link_to "削除", "/foods/#{@food.id}", class: "btn btn-outline-danger", method: :delete %>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
