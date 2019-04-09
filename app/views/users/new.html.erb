@@ -9,21 +9,24 @@
 <% end %>
 
 <div class="row">
-  <div class="col-6 mx-auto">
+  <div class="card col-4 mx-auto p-5">
+    <div class="text-center mb-4">会員登録</div>
     <%= form_tag("/users/create") do %>
     <div class="form-group">
-      <label for="name">名前</label>
-      <input class="form-control" id="name" name="name" value="<%= @user.name %>">
+      <input class="form-control" name="name" value="<%= @user.name %>" placeholder="名前">
     </div>
     <div class="form-group">
-      <label for="email">メールアドレス</label>
-      <input class="form-control" id="email" name="email" value="<%= @user.email %>">
+      <input class="form-control" name="email" value="<%= @user.email %>" placeholder="メールアドレス">
     </div>
     <div class="form-group">
-      <label for="password">パスワード</label>
-      <input class="form-control" id="password" name="password" type="password"  value="<%= @user.password %>">
+      <input class="form-control" id="password" name="password" type="password" value="<%= @user.password %>" placeholder="パスワード">
+      <small id="emailHelp" class="form-text text-muted">半角英数記号8文字以上</small>
     </div>
-    <button class="btn btn-primary">登録</button>
+    <div class="text-center mt-4">
+      <button class="btn btn-primary">登録</button>
+    </div>
     <% end %>
+    
+    <div class="text-center mt-5"><%= link_to "アカウントをお持ちの場合", "/login" %></div>
   </div>
 </div>

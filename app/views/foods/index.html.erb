@@ -2,7 +2,7 @@
   <div class="card-deck mb-3">
     <% foods.each do |food| %>
       <div class="card shadow-sm">
-        <%= image_tag "/food_images/#{food.image_url}", class: "card-img-top" %>
+        <%= link_to image_tag("/food_images/#{food.image_url}", class: "card-img-top"), "/foods/#{food.id}" %>
         <div class="card-body">
           <div><%= link_to food.name, "/foods/#{food.id}" %></div>
           <p><%= food.description %></p>

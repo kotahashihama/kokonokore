@@ -21,5 +21,4 @@ Rails.application.routes.draw do
   post 'likes/:food_id/destroy' => 'likes#destroy'
 
   root 'home#top'
-  get 'about' => 'home#about'
 end

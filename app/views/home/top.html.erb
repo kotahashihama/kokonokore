@@ -1,6 +1,20 @@
 <div class="jumbotron jumbotron-fluid mb-0">
   <div class="text-center">
-    <h1 class="catchcopy">「ココのコレが美味かった」をシェアしよう！</h1>
-    <div class="mt-5"><%= link_to "会員登録から始める", "/signup", class: "btn btn-lg btn-primary" %></div>
+    <div class="catchcopy">「ココのコレが美味かった」をシェアしよう！</div>
+  </div>
+</div>
+
+<div class="text-center mt-5">
+  <h1 class="mb-4">ココノコレとは</h1>
+  <p class="lead">ココノコレは飲食店のおすすめグルメを共有できるサービスです。</p>
+  <p>飲食店の評価というものは単に料理の味だけではなく、そのお店の雰囲気やサービスを含めて決まるものですが、<br>
+  このサイトではおいしい「お店」より「何」がおいしいかというグルメそのものに焦点を当て、<br>
+  週末のお休みから出張時まで、そこだけでしか食べられない絶品の料理を事前に見つけておくと、<br>
+  きっと楽しい時間を過ごせることでしょう！</p>
+  <div class="mt-5">
+    <% unless @current_user %>
+      <%= link_to "会員登録", "/signup", class: "btn btn-primary btn-lg" %>
+    <% end %>
+    <%= link_to "グルメ一覧", "/foods", class: "btn btn-secondary btn-lg" %>
   </div>
 </div>
