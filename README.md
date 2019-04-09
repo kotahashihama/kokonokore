@@ -1,11 +1,13 @@
 # ココノコレ
-## 概要
-飲食店のおすすめグルメを共有できるWebサービスです。  
-デモ: https://kokonokore.herokuapp.com/
+飲食店のおすすめグルメを共有できるWebサービスです。
 
+# デモ
+https://kokonokore.herokuapp.com/
+```
 【デバッグ用アカウント】  
 メールアドレス: test@example.com  
 パスワード: testtest
+```
 
 ## 機能一覧
 - 記事
@@ -29,3 +31,7 @@
   - PostgreSQL
 - デプロイ
   - Heroku
+
+## バージョン
+- Ruby 2.6.0
+- Ruby on Rails 5.2.3
