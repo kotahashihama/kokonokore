@@ -2,8 +2,10 @@ class FoodsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
   before_action :authenticate_user, except: [:index, :show]
   
+  PER = 3
+  
   def index
-    @foods = Food.all.order(created_at: :desc)
+    @foods = Food.page(params[:page]).per(PER).order(created_at: :desc)
   end
   
   def show
