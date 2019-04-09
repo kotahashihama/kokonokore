@@ -4,6 +4,14 @@ body {
   padding-top: 56px;;
 }
 
+.user_image {
+  img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+  }
+}
+
 .jumbotron {
   display: flex;
   justify-content: center;
@@ -17,13 +25,5 @@ body {
     font-size: 3rem;
     color: #fff;
     text-shadow: 0 0 3px #000;
-  }
-}
-
-.user_image {
-  img {
-    width: 150px;
-    height: 150px;
-    object-fit: contain;
   }
 }
