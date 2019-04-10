@@ -11,7 +11,7 @@
       <div class="text-right">
         <% if @current_user %>
           <% if Like.find_by(user_id: @current_user.id, food_id: @food.id) %>
-            <%= link_to "/likes/#{@food.id}/destroy", class: "btn btn-outline-primary", method: :post do %>
+            <%= link_to "/likes/#{@food.id}/destroy", class: "btn btn-outline-primary", method: :delete do %>
             <i class="fas fa-thumbs-up"></i> いいね <%= Like.where(food_id: @food.id).count %>
             <% end %>
           <% else %>

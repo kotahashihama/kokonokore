@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'home#top'
+  
   get 'users' => 'users#index'
   get 'signup' => 'users#new'
   post 'users/create' => 'users#create'
@@ -9,16 +11,8 @@ Rails.application.routes.draw do
   get 'users/:id/edit' => 'users#edit'
   post 'users/:id/update' => 'users#update'
 
-  get 'foods' => 'foods#index'
-  get 'foods/new' => 'foods#new'
-  post 'foods/create' => 'foods#create'
-  get 'foods/:id' => 'foods#show'
-  get 'foods/:id/edit' => 'foods#edit'
-  post 'foods/:id/update' => 'foods#update'
-  delete 'foods/:id' => 'foods#destroy'
+  resources :foods
   
   post 'likes/:food_id/create' => 'likes#create'
-  post 'likes/:food_id/destroy' => 'likes#destroy'
-
-  root 'home#top'
+  delete 'likes/:food_id/destroy' => 'likes#destroy'
 end

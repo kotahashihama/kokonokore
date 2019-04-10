@@ -19,8 +19,8 @@ https://kokonokore.herokuapp.com/
   - ログイン
 - 画像ファイルのアップロード
 - 「いいね」機能
-- パスワード暗号化
-- ページネーション
+- パスワード暗号化（gem「bcrypt」)
+- ページネーション（gem「kaminari」）
 
 ## 使用技術
 - 言語
