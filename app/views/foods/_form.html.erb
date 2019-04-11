@@ -1,0 +1,29 @@
+<% if @food.errors.full_messages %>
+<div>
+  <ul class="text-danger">
+    <% @food.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="row">
+  <div class="col-6 mx-auto">
+    <%= form_for @food, html: {multipart: true} do |f| %>
+      <div class="form-group">
+        <%= f.file_field :picture, class: "form-control-file" %>
+      </div>
+      <div class="form-group">
+        <%= f.text_field :name, placeholder: "グルメの名前", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.text_field :shop_name, placeholder: "お店の名前", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.text_area :description, placeholder: "説明", class: "form-control" %>
+      </div>
+      <%= f.submit "投稿", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

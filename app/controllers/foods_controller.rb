@@ -18,7 +18,8 @@ class FoodsController < ApplicationController
   end
   
   def create
-    @food = Food.new(name: params[:name], shop_name: params[:shop_name], description: params[:description], user_id: @current_user.id)
+    @food = Food.new(food_params)
+    @food.user_id = @current_user.id
     
     if params[:image]
       @food.image_url = "#{@food.id}.jpg"
@@ -65,11 +66,17 @@ class FoodsController < ApplicationController
     redirect_to("/foods")
   end
   
-  def ensure_correct_user
-    @food = Food.find(params[:id])
-    if @current_user && @food.user_id != @current_user.id
-      flash[:danger] = "権限がありません"
-      redirect_to("/foods")
+  private
+  
+    def ensure_correct_user
+      @food = Food.find(params[:id])
+      if @current_user && @food.user_id != @current_user.id
+        flash[:danger] = "権限がありません"
+        redirect_to("/foods")
+      end
     end
-  end
+    
+    def food_params
+      params.require(:food).permit(:name, :shop_name, :description ,:picture)
+    end
 end

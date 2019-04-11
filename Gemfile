@@ -52,5 +52,13 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# エラー文を日本語化
 gem 'rails-i18n'
+
+# ページネーション
 gem 'kaminari', '~> 0.17.0'
+
+# 画像アップロード
+gem 'carrierwave', '~> 0.10.0'
+gem 'mini_magick', '~> 3.8.0'
+gem 'fog', '~> 1.36.0'
