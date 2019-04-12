@@ -1,12 +1,12 @@
 <div class="col-8 mx-auto">
   <div class="card shadow">
-    <%= image_tag @food.picture.url %>
+    <%= image_tag @food.picture.url, alt: @food.name %>
     <div class="card-body">
       <div><b><%= @food.name %></b></div>
       <p><%= @food.description %></p>
       <div class="text-muted"><%= @food.shop_name %></div>
       
-      <small class="text-muted"><%= time_ago_in_words(@food.created_at) + "前" %> by <%= link_to @user.name, "/users/#{@user.id}" %></small>
+      <small class="text-muted"><%= time_ago_in_words(@food.created_at) %> by <%= link_to @user.name, "/users/#{@user.id}" %></small>
       
       <div class="text-right">
         <% if @current_user %>

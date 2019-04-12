@@ -2,13 +2,16 @@
   <div class="col-8">
     <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
       <% if @user.id == @current_user.id%>
-      <li class="nav-item">
-        <a class="nav-link" id="timeline-tab" data-toggle="tab" href="#timeline" role="tab" aria-controls="timeline" aria-selected="true">タイムライン</a>
-      </li>
+        <li class="nav-item">
+          <a class="nav-link" id="timeline-tab" data-toggle="tab" href="#timeline" role="tab" aria-controls="timeline" aria-selected="true">タイムライン</a>
+        </li>
       <% end %>
-      <li class="nav-item">
-        <a class="nav-link" id="likes-tab" data-toggle="tab" href="#likes" role="tab" aria-controls="likes" aria-selected="false">いいね</a>
-      </li>
+      
+      <% unless @likes.empty? %>
+        <li class="nav-item">
+          <a class="nav-link" id="likes-tab" data-toggle="tab" href="#likes" role="tab" aria-controls="likes" aria-selected="false">いいね</a>
+        </li>
+      <% end %>
     </ul>
     
     <div class="tab-content" id="myTabContent">
@@ -17,12 +20,12 @@
           <div class="card-deck mb-3">
             <% foods.each do |food| %>
               <div class="card">
-                <%= image_tag "/food_images/#{food.image_url}", class: "card-img-top" %>
+                <%= image_tag food.picture.url, alt: food.name, class: "card-img-top" %>
                 <div class="card-body">
                   <div><%= link_to food.name, "/foods/#{food.id}" %></div>
                   <%= food.description %>
                   <p class="text-muted"><%= food.shop_name %></p>
-                  <small class="text-muted"><%= time_ago_in_words(food.created_at) + " ago" %></small>
+                  <small class="text-muted"><%= time_ago_in_words(food.created_at) %></small>
                 </div>
               </div>
             <% end %>
@@ -31,17 +34,18 @@
       </div>
       
       <div class="tab-pane fade" id="likes" role="tabpanel" aria-labelledby="likes-tab">
-        <% @likes.each_slice(2) do |likes| %>
+      <% @likes.each_slice(2) do |likes| %>
           <div class="card-deck mb-3">
+            <% likes = Like.where(user_id: @user.id) %>
             <% likes.each do |like| %>
-            <% food = Food.find_by(id: like.food_id) %>
+            <% food = Food.find_by(id: like.food_id)%>
               <div class="card">
-                <%= image_tag "/food_images/#{food.image_url}", class: "card-img-top" %>
+                <%= image_tag food.picture.url, alt: food.name, class: "card-img-top" %>
                 <div class="card-body">
                   <div><%= link_to food.name, "/foods/#{food.id}" %></div>
                   <%= food.description %>
                   <p class="text-muted"><%= food.shop_name %></p>
-                  <small class="text-muted"><%= time_ago_in_words(food.created_at) + " ago" %></small>
+                  <small class="text-muted"><%= time_ago_in_words(food.created_at) %></small>
                 </div>
               </div>
             <% end %>
