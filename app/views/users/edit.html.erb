@@ -1,40 +1,40 @@
 <% if @user.errors.full_messages %>
-<div>
-  <ul class="text-danger">
-    <% @user.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-</div>
+  <div>
+    <ul class="text-danger">
+      <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <div class="row">
   <div class="col-6 mx-auto">
-    <%= form_tag("/users/#{@user.id}/update", multipart: true) do %>
+    <%= form_with url: "/users/#{@user.id}/update", html: { multipart: true } do |f| %>
       <div class="user_image">
         <%= image_tag "/user_images/#{@user.image_url}", alt: @user.name %>
       </div>
       <div class="form-group">
-        <label for="image">プロフィール画像</label>
-        <input class="form-control-file" id="image" name="image" type="file">
+        <%= f.label "プロフィール画像" %>
+        <%= f.file_field :image, class: 'form-control-file' %>
       </div>
       <div class="form-group">
-        <label for="name">名前</label>
-        <input class="form-control" id="name" name="name" value="<%= @user.name %>">
+        <%= f.label "名前" %>
+        <%= f.text_field :name, value: @user.name, class: 'form-control' %>
       </div>
       <div class="form-group">
-        <label for="email">メールアドレス</label>
-        <input class="form-control" id="email" name="email" value="<%= @user.email %>">
+        <%= f.label "メールアドレス" %>
+        <%= f.email_field :email, value: @user.email, class: 'form-control' %>
       </div>
       <div class="form-group">
-        <label for="description">自己紹介</label>
-        <textarea class="form-control" id="description" name="description"><%= @user.description %></textarea>
+        <%= f.label "自己紹介" %>
+        <%= f.text_area :description, value: @user.description, class: 'form-control' %>
       </div>
       <div class="form-group">
-        <label for="password">パスワード</label>
-        <input class="form-control" id="password" name="password" type="password" value="<%= @user.password %>">
+        <%= f.label "パスワード" %>
+        <%= f.password_field :password, class: 'form-control' %>
       </div>
-      <button class="btn btn-primary" type="submit">更新</button>
+      <%= f.submit "更新", class: 'btn btn-primary' %>
     <% end %>
   </div>
 </div>

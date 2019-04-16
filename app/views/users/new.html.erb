@@ -1,29 +1,29 @@
 <% if @user.errors.full_messages %>
-<div>
-  <ul class="text-danger">
-    <% @user.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-</div>
+  <div>
+    <ul class="text-danger">
+      <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <div class="row">
   <div class="card col-4 mx-auto p-5">
     <div class="text-center mb-4">会員登録</div>
-    <%= form_tag("/users/create") do %>
+    <%= form_with url: "/users/create" do |f| %>
     <div class="form-group">
-      <input class="form-control" name="name" value="<%= @user.name %>" placeholder="名前">
+      <%= f.text_field :name, value: @user.name, placeholder: '名前', class: 'form-control' %>
     </div>
     <div class="form-group">
-      <input class="form-control" name="email" value="<%= @user.email %>" placeholder="メールアドレス">
+      <%= f.email_field :email, value: @user.email, placeholder: 'メールアドレス', class: 'form-control' %>
     </div>
     <div class="form-group">
-      <input class="form-control" id="password" name="password" type="password" value="<%= @user.password %>" placeholder="パスワード">
-      <small id="emailHelp" class="form-text text-muted">半角英数記号8文字以上</small>
+      <%= f.password_field :password, value: @user.password, placeholder: 'パスワード', class: 'form-control'  %>
+      <small class="form-text text-muted">半角英数記号8文字以上</small>
     </div>
     <div class="text-center mt-4">
-      <button class="btn btn-primary">登録</button>
+      <%= f.submit '登録', class: 'btn btn-primary' %>
     </div>
     <% end %>
     

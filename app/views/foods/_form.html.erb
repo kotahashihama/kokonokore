@@ -1,16 +1,16 @@
 <% if @food.errors.full_messages %>
-<div>
-  <ul class="text-danger">
-    <% @food.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-</div>
+  <div>
+    <ul class="text-danger">
+      <% @food.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <div class="row">
   <div class="col-6 mx-auto">
-    <%= form_with model: @food, html: {multipart: true} do |f| %>
+    <%= form_with model: @food, html: { multipart: true } do |f| %>
       <div class="form-group">
         <%= f.file_field :picture, class: "form-control-file" %>
       </div>
