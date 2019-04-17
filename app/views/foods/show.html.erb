@@ -6,7 +6,7 @@
       <p><%= @food.description %></p>
       <div class="text-muted"><%= @food.shop_name %></div>
       
-      <small class="text-muted"><%= time_ago_in_words(@food.created_at) %> by <%= link_to @user.name, "/users/#{@user.id}" %></small>
+      <small class="text-muted"><%= time_ago_in_words(@food.created_at) %> by <%= link_to @food.user.name, "/users/#{@food.user.id}" %></small>
       
       <div class="text-right">
         <% if @current_user %>
@@ -20,7 +20,7 @@
             <% end %>
           <% end %>
         
-          <% if @food.user_id == @current_user.id %>
+          <% if @food.user.id == @current_user.id %>
             <%= link_to "編集", "/foods/#{@food.id}/edit", class: "btn btn-outline-secondary" %>
             <%= link_to "削除", "/foods/#{@food.id}", class: "btn btn-outline-danger", method: :delete %>
           <% end %>

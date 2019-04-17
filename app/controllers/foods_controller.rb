@@ -10,7 +10,6 @@ class FoodsController < ApplicationController
   
   def show
     @food = Food.find(params[:id])
-    @user = User.find_by(id: @food.user_id)
   end
   
   def new

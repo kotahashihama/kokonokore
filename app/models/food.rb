@@ -5,4 +5,6 @@ class Food < ApplicationRecord
   validates :description, presence: true, length: {maximum: 140}
   validates :picture, presence: true
   validates :user_id, presence: true
+  
+  belongs_to :user
 end
