@@ -4,13 +4,14 @@ Rails.application.routes.draw do
   get 'users' => 'users#index'
   get 'signup' => 'users#new'
   post 'users/create' => 'users#create'
-  get 'login' => 'users#login_form'
-  post 'login' => 'users#login'
-  post 'logout' => 'users#logout'
   get 'users/:id' => 'users#show'
   get 'users/:id/edit' => 'users#edit'
   post 'users/:id/update' => 'users#update'
 
+  get 'login' => 'sessions#login_form'
+  post 'login' => 'sessions#login'
+  post 'logout' => 'sessions#logout'
+  
   resources :foods
   
   post 'likes/:food_id/create' => 'likes#create'
